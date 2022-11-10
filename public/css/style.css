@@ -1,0 +1,139 @@
+/* 
+
+  Minimum view height styles
+  25/50/75
+  100% not required due to tailwind
+
+*/
+
+.vh-25 {
+  min-height: 25vh;
+}
+.vh-50 {
+  min-height: 50vh;
+}
+.vh-75 {
+  min-height: 75vh;
+}
+.hero-bg {
+  background-image: linear-gradient(0deg, rgba(2,0,36,.5) 0%, rgba(0,106,166,.5) 35%, rgba(0,212,255,.5) 100%), url('../img/components/homesitter-hero.jpg') ;
+  background-size: cover;
+  background-position: center center;
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+}
+
+.roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Custom heading colours */
+.service-green {
+  color: #499455;
+}
+.shadow {
+  box-shadow: rgba(0, 0, 0, .3) 0px 4px 10px;
+}
+.shadow-md {
+  box-shadow: rgba(0, 0, 0, .3) 5px 4px 5px;
+}
+
+/* Inspections styles */
+#inspections {
+  /* background:  rgba(73,148,85, .42); */
+  background-image: url(../hero-bg.jpg) ;
+  background-size: cover;
+  background-attachment: fixed;
+  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
+  min-height: 75vh;
+  display: block;
+}
+@media only screen and (max-width: 400px) {
+  #inspections {
+    /* background:  rgba(73,148,85, .42); */
+    background-image: url(../hero-bg.jpg) ;
+    background-size: cover;
+    background-attachment: fixed;
+    clip-path: polygon(0 1%, 100% 0, 100% 99%, 0% 100%);
+    min-height: 55vh;
+    display: block;
+  }
+}
+
+.inspect-frame {
+  background: linear-gradient(180deg, rgba(172, 252, 205, 0.5) 0%, rgba(255, 255, 255, 0) 100%) rgba(248, 248, 248, 0.8);
+  mix-blend-mode: normal;
+  box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 80%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inspect-frame img {
+  border-radius: 15%;
+}
+.triangle-gradient {
+  background-image: linear-gradient(to bottom right, rgba(255,255,255,.2) 0%, rgba(255,255,255,.2) 50%, transparent 50%);
+}
+
+/* faq */
+
+.accordian {
+  transition: all 1s ease;
+  transition-delay: 150ms;
+}
+.accordian-collapse {
+  height: 0px;
+  visibility: hidden;
+  transition: all 1s ease;
+  transition-delay: 150ms;
+  opacity: 0;
+
+}
+.accordian-expand {
+  height: 7.5em;
+  display: block;
+  visibility: visible;
+  transition: all 1s ease;
+  transition-delay: 150ms;
+
+}
+@media only screen and (max-width: 535px){
+  .accordian-expand {
+    height: 100%;
+    display: block;
+    visibility: visible;
+    transition: all 1s ease;
+    transition-delay: 150ms;
+  
+  }
+}
+
+#tip {
+  transition: all .7s ease;
+  opacity: 1;
+}
+
+
+/*  Animations & Transforms */
+
+.slide-x {
+  transition: all 1s ease;
+  transition-delay: 100ms;
+  transform: translateX(-400%);
+  
+}
+.slide-x:nth-of-type(even) {
+  transition: all 1s ease;
+  transition-delay: 100ms;
+  transform: translateX(400%);
+}
+.slide-x.show{
+  opacity: 1;
+  transform: translateX(0);
+  height: 100%;
+}
+
+.mobile-nav {
+  transform: translateX(-200%);
+}
