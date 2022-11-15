@@ -17,7 +17,18 @@
   {{-- font awesome --}}
   <script src="https://kit.fontawesome.com/c5608c8cee.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="transition-all duration-500 ease">
+  {{-- Form Modal --}}
+  <div id="formModal" class="hidden w-full h-full fixed top-0 bg-black/90 pointer-events-auto z-50 flex items-center justify-center transition-all duration-500 opacity-0 cursor-wait">
+    <div class="text-black uppercase font-semibold w-1/4 bg-zinc-100/60 rounded-xl p-5">
+      <p class="text-center mb-5">Are you a robot?</p>
+      <div class="mx-auto w-1/2 block text-center p-3 bg-white rounded-full transition-all duration-500 ease">
+        <input type="checkbox" name="robots" id="robotCheck" class="p-2">
+        <span class="ml-5 hidden " id="notToday"><i class="fa-solid fa-check text-xl text-green-500"></i> Not Today!</span>
+      </div>
+    </div>
+  </div>
+  
   <header>
     <nav id="navbar"
         class="px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0">
@@ -280,25 +291,46 @@
   <footer>
     <div class="h-96 bg-gradient-to-b from-slate-800 via-sky-800 to-sky-800">
       <div class="md:container md:mx-auto pt-10">
-        <div class="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 w-full mx-auto gap-10">
-          <div class="">
+        <div class="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 w-100 mx-auto gap-10">
+          <div class="w-auto">
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold">HomeSitters4U.com</h5>
             <p class="pt-5 text-white">
               Your house is more than a house, its a home where we have cherished memories and watch growth.  HomeSitters is dedicated to making sure your home is in tip top shape.  Worrying about someone checking in on your home can be troublesome, we remove that headache for you to ensure you have a valid insuranace claim in case something were to happen.
             </p>
           </div>
-          <div class="">
-            <h5 class="text-white text-xl tracking-wide uppercase font-semibold">sitemap</h5>
-
+          <div class="w-full flex justify-center">
+            <div class="div">
+              <h5 class="text-white text-xl tracking-wide uppercase font-semibold">sitemap</h5>
+              <ul class="list-style-none uppercase text-white pt-5 font-2xl font-bold">
+                <li><i class="fa-solid fa-house mr-2"></i>  HOME</li>
+                <li><i class="fa-solid fa-handshake mr-2"></i>  SERVICES</li>
+                <li><i class="fa-solid fa-magnifying-glass mr-2"></i>  inspections</li>
+                <li><i class="fa-solid fa-question mr-2"></i>  faq</li>
+                <li><i class="fa-solid fa-envelope mr-2"></i>  contact</li>
+              </ul>
+            </div>
           </div>
-          <div class="">
+          <div class="w-full">
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold">contact</h5>
-
+            <ul class="list-style-none uppercase text-white pt-5 font-2xl font-semibold">
+              <li><i class="fa-solid fa-phone mr-2"></i>  1 (780) 289-3856</li>
+              <li><i class="fa-solid fa-map mr-2"></i>  Edmonton, Alberta</li>
+              <li><i class="fa-solid fa-envelope mr-2"></i> hello@homesitters4u.com</li>
+            </ul>
+            <h5 class="text-white text-xl tracking-wide uppercase font-semibold mt-5 pb-3">more info</h5>
+            <form class="block w-full" id="connectForm" method="POST">
+              @csrf
+              <input type="email" name="email" id="email" required placeholder="youremail@address.com" class="w-2/3 rounded-md bg-slate-700/80 p-2 placeholder:font-white/500 placeholder:font-semibold placeholder:px-2">
+              <button id="connectSubmit" type="submit" class="uppercase px-3 py-2 bg-orange-700 rounded-md text-white font-semibold">connect</button>
+            </form>
+            <div class="hidden w-100 text-center" id="toastMsg">
+              <h4 class="text-white font-semibold">Thank you! your request for more information has been received.</h4>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </footer>
+  </footer>  
   {{-- Laravel Mix --}}
   <script src="{{ mix('/js/app.js') }}"></script>
   {{-- Custom script --}}

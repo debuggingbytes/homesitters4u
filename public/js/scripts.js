@@ -71,3 +71,96 @@ chevrons.forEach(chevron => {
     // console.log(chevron.parentElement.parentElement.children[1].style = 'border: 4px solid black')
   })
 })
+
+// form methods
+const form = document.getElementById('connectForm')
+const formBtn = document.getElementById('connectSubmit')
+const formModal = document.getElementById('formModal')
+const robotCheck = document.getElementById('robotCheck')
+const notToday = document.getElementById('notToday')
+
+formModal.classList.remove('cursor-wait')
+
+const quickClose = document.addEventListener('keydown', (e)=> {
+  if(e.key === "Escape" || e.key === "Esc"){
+    formModal.classList.add('hidden')
+  }
+})
+
+
+
+async function sendEmail(verified){
+  let data = await fetch("/api/" + form.email.value+"/?verified="+verified, {
+    method: 'POST',
+  })
+  
+  return data
+}
+
+function is_verified(){
+  if(form.verified){
+    return true
+  }
+  return false
+}
+
+formBtn.addEventListener('click', async (e) => {
+  
+  e.preventDefault()
+
+  if(form.email.value == ''){
+    form.email.classList.add("invalid-input")
+    return false;
+  }
+
+  formModal.classList.toggle('hidden')
+  formModal.style.opacity = "1"
+
+
+  robotCheck.addEventListener('change', async () => {
+    formModal.classList.add('cursor-wait')
+    robotCheck.classList.add('hidden')
+    setTimeout(()=>{
+      formModal.classList.remove('cursor-wait')
+      notToday.classList.remove('hidden')
+    }, 1500)
+    
+    formModal.classList.add('hidden')
+    //create input for filter verifying via laravel to prevent spam
+    let newInput = document.createElement('input')
+    newInput.type="hidden"
+    newInput.name='verified'
+    newInput.value=true
+    form.appendChild(newInput)
+    let verified = is_verified()    
+
+    if(verified){
+      const data = await sendEmail(verified)
+      .then((res) => res)
+      .then((data) => {
+        // console.log("We have data..")
+        // console.log(data)
+        //we have a response saying its all good
+        return data
+      })
+      
+      // console.log(data)
+      if(data.status === 200){
+        // console.log(data.json())
+        let toast = document.getElementById("toastMsg")
+        form.classList.add("hidden")
+        toast.classList.toggle("hidden")
+      }
+      console.log(data)
+    }
+  
+  })
+  
+  
+
+ 
+  
+})
+
+
+

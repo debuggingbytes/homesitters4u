@@ -137,3 +137,8 @@
 .mobile-nav {
   transform: translateX(-200%);
 }
+
+.invalid-input {
+  border: solid 2px rgb(204, 23, 23);
+  border-style: inset;
+}
