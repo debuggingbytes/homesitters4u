@@ -192,7 +192,7 @@
         </div>
       </div>
     </section>
-    <section id="faq" class="lg:container mx-5 lg:mx-auto py-20">
+    <section id="faq" class="lg:container mx-5 lg:mx-auto lg:py-20">
       <h2 class="text-xl mb-5 md:mb-0 md:text-3xl tracking-wide uppercase service-green font-bold">Frequently Asked Questions</h2>
       <p class="text-md ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quod explicabo non dolorem in voluptatibus totam laborum nesciunt nemo! Ullam iusto suscipit illo nihil aut, fugit dolorem voluptate ad quae excepturi reprehenderit ratione sint dicta consequatur quia temporibus. Fuga omnis, consequatur nemo deserunt ex quam! Maxime recusandae laborum mollitia placeat itaque impedit eos. Unde, eum facilis iusto aperiam totam non.</p>
       <div class="grid grid-rows-2 gap-5 lg:flex lg:gap-10 pt-10 ">
@@ -287,30 +287,106 @@
         </div>
       </div>
     </section>
+    <section id="testimonial md:py-20 h-full">
+      <div class="px-5 lg:container lg:mx-auto slide-x py-16">
+        <h2 class="text-xl mb-5 md:mb-0 md:text-3xl uppercase service-green font-bold md:py-10">See what our clients say</h2>
+        <p class="mb-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim excepturi quasi aperiam cumque asperiores? Iure libero necessitatibus asperiores error, eos, nihil voluptates eveniet suscipit recusandae, labore itaque tempore doloremque nulla ab nesciunt adipisci sapiente. Ut repellendus tempora mollitia et nemo asperiores dolore consequuntur, distinctio eveniet quaerat magni doloribus iure iusto!</p>
+        <div class="lg:mb-20 w-full">
+          <div class="testimonials w-full">
+            <button id="prev" class="hover:drop-shadow-md hover:font-bold hover:opacity-80 px-2 py-2 text-white font-semibold text-center">
+              <i class="fa-sharp fa-solid fa-chevron-left text-2xl text-black"></i>
+            </button>
+            <button id="next" class="hover:drop-shadow-md hover:font-bold hover:opacity-80 px-2 py-2 text-white font-semibold text-center">
+              <i class="fa-sharp fa-solid fa-chevron-right text-black text-2xl"></i>
+            </button>
+            <div class="w-full h-full">
+              {{-- Full Testimonial Start --}}
+              <div class="testimonial current lg:w-100 lg:h-100 md:py-10">
+                <div class="lg:hidden w-full grid-rows-2 bg-emerald-500/20 shadow rounded-xl p-5 gap-3 relative">                                   
+                  <img src="{{ asset('img/test.jpg') }}" class='w-1/4 h-1/4 lg:w-full lg:h-3/4 sm:w-1/4 rounded-full mr-4'>
+                  <div class="">
+                    <h4 class="font-semibold text-lg text-slate-600 uppercase pr-4 mb-3 block">Amazing service</h4>
+                    <p class="block">HomeSitters4U provides such an amazing service, they send all the pictures of each item inspected during the home check up, we also had our driveways shoveled while we were away. Would recommend!</p>
+                  </div>
+                  <div class="flex justify-between pt-5">
+                    <div class="flex w-3/4 justify-start align-center">
+                      <strong class="text-sm text-gray-600">Joe D</strong>
+                    </div>
+                    <div class="flex w-1/4 justify-evenly align-center">                      
+                      <i class="fa-solid fa-star text-yellow-300"></i>
+                      <i class="fa-solid fa-star text-yellow-300"></i>
+                      <i class="fa-solid fa-star text-yellow-300"></i>
+                      <i class="fa-solid fa-star text-yellow-300"></i>
+                      <i class="fa-solid fa-star text-yellow-300"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="hidden bg-emerald-500/20 shadow rounded-xl lg:flex lg:flex-grid-2 lg:gap-10 py-10 px-5 lg:h-64 ">
+                  <div class="w-100 md:w-1/2 md:order-1 relative overflow-hidden rounded-lg bg-slate-50 shadow p-2 pb-5">
+                    <img src="{{ asset('img/test.jpg') }}" class='lg:w-fit lg:h-3/4 rounded-full mx-auto'>
+                    <div class="person w-3/4 absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
+                      <strong class="text-sm text-gray-600">Joe D</strong>
+                    </div>
+                    <div class="stars md:w-1/2 absolute bottom-2 left-1/2 -translate-x-1/2">
+                      <div class="flex justify-between">
+                        <i class="fa-solid fa-star text-yellow-300"></i>
+                        <i class="fa-solid fa-star text-yellow-300"></i>
+                        <i class="fa-solid fa-star text-yellow-300"></i>
+                        <i class="fa-solid fa-star text-yellow-300"></i>
+                        <i class="fa-solid fa-star text-yellow-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-100 block md:w-2/3 md:order-2">
+                    <h4 class="font-semibold text-lg text-slate-600 uppercase border-b-2 inline-block pr-4 mb-3 border-slate-800">Amazing service</h4>
+                    <p>HomeSitters4U provides such an amazing service, they send all the pictures of each item inspected during the home check up, we also had our driveways shoveled while we were away. Would recommend!</p>
+                  </div>
+                </div>
+              </div>
+              {{-- Full Testimonial End --}}
+
+
+              <div class="testimonial">
+                <h4>This is doug2</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, et dolores eos ipsum voluptas quo. Mollitia quae sint tenetur architecto?</p>
+              </div>
+              <div class="testimonial">
+                <h4>This is doug3</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, et dolores eos ipsum voluptas quo. Mollitia quae sint tenetur architecto?</p>
+              </div>
+              <div class="testimonial">
+                <h4>This is doug4</h4>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, et dolores eos ipsum voluptas quo. Mollitia quae sint tenetur architecto?dsadsadsadsad</p>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer>
-    <div class="h-96 bg-gradient-to-b from-slate-800 via-sky-800 to-sky-800">
+    <div class="lg:h-96 bg-gradient-to-b from-slate-800 via-sky-800 to-sky-800">
       <div class="md:container md:mx-auto pt-10">
-        <div class="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 w-100 mx-auto gap-10">
-          <div class="w-auto">
+        <div class="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 w-100 mx-auto gap-5 lg:gap-10">
+          <div class="w-auto px-5 lg:px-0">
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold">HomeSitters4U.com</h5>
             <p class="pt-5 text-white">
               Your house is more than a house, its a home where we have cherished memories and watch growth.  HomeSitters is dedicated to making sure your home is in tip top shape.  Worrying about someone checking in on your home can be troublesome, we remove that headache for you to ensure you have a valid insuranace claim in case something were to happen.
             </p>
           </div>
-          <div class="w-full flex justify-center">
-            <div class="div">
+          <div class="w-full lg:flex lg:justify-center">
+            <div class="px-5 lg:px-0">
               <h5 class="text-white text-xl tracking-wide uppercase font-semibold">sitemap</h5>
-              <ul class="list-style-none uppercase text-white pt-5 font-2xl font-bold">
-                <li><i class="fa-solid fa-house mr-2"></i>  HOME</li>
-                <li><i class="fa-solid fa-handshake mr-2"></i>  SERVICES</li>
-                <li><i class="fa-solid fa-magnifying-glass mr-2"></i>  inspections</li>
-                <li><i class="fa-solid fa-question mr-2"></i>  faq</li>
-                <li><i class="fa-solid fa-envelope mr-2"></i>  contact</li>
+              <ul class="list-style-none uppercase text-white pt-5 font-2xl font-bold flex-col lg:block">
+                <li><i class="fa-solid fa-house mr-2 w-8 text-center"></i>  HOME</li>
+                <li><i class="fa-solid fa-handshake mr-2 w-8 text-center"></i>  SERVICES</li>
+                <li><i class="fa-solid fa-magnifying-glass mr-2 w-8 text-center"></i>  inspections</li>
+                <li><i class="fa-solid fa-question mr-2 w-8 text-center"></i>  faq</li>
+                <li><i class="fa-solid fa-envelope mr-2 w-8 text-center"></i>  contact</li>
               </ul>
             </div>
           </div>
-          <div class="w-full">
+          <div class="w-full px-5 lg:px-0 pb-10 lg:pb-0">
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold">contact</h5>
             <ul class="list-style-none uppercase text-white pt-5 font-2xl font-semibold">
               <li><i class="fa-solid fa-phone mr-2"></i>  1 (780) 289-3856</li>
@@ -320,8 +396,8 @@
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold mt-5 pb-3">more info</h5>
             <form class="block w-full" id="connectForm" method="POST">
               @csrf
-              <input type="email" name="email" id="email" required placeholder="youremail@address.com" class="w-2/3 rounded-md bg-slate-700/80 p-2 placeholder:font-white/500 placeholder:font-semibold placeholder:px-2">
-              <button id="connectSubmit" type="submit" class="uppercase px-3 py-2 bg-orange-700 rounded-md text-white font-semibold">connect</button>
+              <input type="email" name="email" id="email" required placeholder="youremail@address.com" class="lg:w-2/3 rounded-md bg-slate-700/80 p-2 placeholder:font-white/500 placeholder:font-semibold placeholder:px-2 w-full block mb-3">
+              <button id="connectSubmit" type="submit" class="uppercase px-3 py-2 bg-orange-700 rounded-md text-white font-semibold w-full block mb-3 lg:w-auto">connect</button>
             </form>
             <div class="hidden w-100 text-center" id="toastMsg">
               <h4 class="text-white font-semibold">Thank you! your request for more information has been received.</h4>

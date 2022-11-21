@@ -154,13 +154,57 @@ formBtn.addEventListener('click', async (e) => {
       console.log(data)
     }
   
-  })
-  
-  
-
- 
-  
+  })  
 })
 
+// Testimonials slider
 
+const slides = document.querySelectorAll('.testimonial')
+// todo add next and previous buttons
+const next = document.querySelector('#next')
+const prev = document.querySelector('#prev')
+const auto = false;
+const intervalTime = 5500;
+let slideInterval;
 
+const nextSlide = () => {
+  //get current slide
+  const current = document.querySelector('.current')
+  // remove current class from slides
+  current.classList.remove('current')
+  // Check next slide
+  if(current.nextElementSibling){
+    current.nextElementSibling.classList.add('current')
+  }else{
+    slides[0].classList.add('current')
+  }
+  setTimeout( ()=> current.classList.remove('.current'))
+}
+
+const prevSlide = () => {
+  //get current slide
+  const current = document.querySelector('.current')
+  // remove current class from slides
+  current.classList.remove('current')
+  // Check previous slide
+  if(current.previousElementSibling){
+    current.previousElementSibling.classList.add('current')
+  }else{
+    // add current to last slide
+    slides[slides.length-1].classList.add('current')
+  }
+  setTimeout( ()=> current.classList.remove('.current'))
+}
+
+//Button events for slider
+next.addEventListener('click', e => {
+  nextSlide()
+})
+prev.addEventListener('click', e => {
+  prevSlide()
+})
+
+// Auto Slide
+if(auto){
+  slideInterval = setInterval(nextSlide, intervalTime);
+}
