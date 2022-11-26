@@ -19,8 +19,64 @@ mobileNavBtn.addEventListener('click', ()=>{
 })
 
 
+// Auto Navigation highlighting
+const navLinks = document.querySelectorAll('.nav-link')
+// const sections = document.querySelectorAll('section')
 
-checkSlide();
+// const observer = new  IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+//     if(entry.isIntersecting){
+//       if(Array.from(navLinks).find(value => value == entry.target.getAttribute('id'))){
+//         console.log("We found it")
+//       }
+      
+//       console.log(entry.target.getAttribute('id'))
+//     }
+//   })
+// })
+
+
+// sections.forEach((el) => observer.observe(el))
+
+
+// Get all sections that have an ID defined
+const sections = document.querySelectorAll("section[id]");
+
+// Add an event listener listening for scroll
+window.addEventListener("scroll", navHighlighter);
+
+function navHighlighter() {
+  
+  // Get current scroll position
+  let scrollY = window.pageYOffset;
+  
+  // Now we loop through sections to get height, top and ID values for each
+  sections.forEach(current => {
+    const sectionHeight = current.offsetHeight;
+    const sectionTop = current.offsetTop - 50;
+    sectionId = current.getAttribute("id");
+    
+    /*
+    - If our current scroll position enters the space where current section on screen is, add .active class to corresponding navigation link, else remove it
+    - To know which link needs an active class, we use sectionId variable we are getting while looping through sections as an selector
+    */
+
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      document.querySelector("a[href='#contact']").classList.add("current-page");
+    }else{
+      document.querySelector("a[href='#contact']").classList.remove("current-page");
+    }
+
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight ){
+      document.querySelector("a[href*=" + sectionId + "]").classList.add("current-page");
+    } else {
+      document.querySelector("a[href*=" + sectionId + "]").classList.remove("current-page");
+    }
+  });
+}
+
+
+
 
 function checkSlide(){
   
@@ -28,9 +84,9 @@ function checkSlide(){
     const boxTop = slide.getBoundingClientRect().top
     if(boxTop < triggerBottom){
       slide.classList.add('show')
-    }else{
-      slide.classList.remove('show')
-    }
+    }// }else{
+    //   slide.classList.remove('show')
+    // }
   })
 
   if(hero.getBoundingClientRect().bottom < bottom){
@@ -208,3 +264,19 @@ prev.addEventListener('click', e => {
 if(auto){
   slideInterval = setInterval(nextSlide, intervalTime);
 }
+
+
+
+// Auto Copyright
+const copyright = document.getElementById('copyright')
+const theYear = new Date();
+copyright.innerText = theYear.getFullYear();
+
+
+
+
+
+
+
+// Firing functions
+checkSlide();

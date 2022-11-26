@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 /* 
 
   Minimum view height styles
@@ -16,10 +20,24 @@
   min-height: 75vh;
 }
 .hero-bg {
-  background-image: linear-gradient(0deg, rgba(2,0,36,.5) 0%, rgba(0,106,166,.5) 35%, rgba(0,212,255,.5) 100%), url('../img/components/homesitter-hero.jpg') ;
+  position: relative;
+  background-image: linear-gradient(0deg, rgba(2,0,36,.5) 0%, rgba(0,106,166,.5) 35%, rgb(0, 213, 255) 100%), url('../img/components/homesitter-hero.jpg') ;
   background-size: cover;
+  
   background-position: center center;
-  clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+  /* clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%); */
+}
+.service-wave {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  content: '';
+  top: -1px;
+  left: 0;
+  background-image: url(../img/components/wave2.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top left;
 }
 
 .roboto {
@@ -37,23 +55,40 @@
   box-shadow: rgba(0, 0, 0, .3) 5px 4px 5px;
 }
 
+/* Navigation Highlighting */
+nav a.current-page {
+  color: #F97316;
+  transition: all 300ms ease;
+  border-bottom:#F97316 solid 1px;
+  margin-top: 2px;
+  padding-bottom: 2px;
+}
+
+
+/* Services */
+
+
+
+
+
 /* Inspections styles */
 #inspections {
   /* background:  rgba(73,148,85, .42); */
-  background-image: url(../hero-bg.jpg) ;
+  background-image: url(../img/components/stacked-waves.svg) ;
   background-size: cover;
   background-attachment: fixed;
-  clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%);
-  min-height: 75vh;
+  /* clip-path: polygon(0 10%, 100% 0, 100% 90%, 0% 100%); */
+  min-height: 100vh;
   display: block;
+
 }
 @media only screen and (max-width: 400px) {
   #inspections {
     /* background:  rgba(73,148,85, .42); */
-    background-image: url(../hero-bg.jpg) ;
+  background-image: url(../img/components/stacked-waves.svg) ;
     background-size: cover;
     background-attachment: fixed;
-    clip-path: polygon(0 1%, 100% 0, 100% 99%, 0% 100%);
+    /* clip-path: polygon(0 1%, 100% 0, 100% 99%, 0% 100%); */
     min-height: 55vh;
     display: block;
   }
@@ -81,6 +116,8 @@
 .accordian {
   transition: all 1s ease;
   transition-delay: 150ms;
+  height: 100%;
+  overflow-y: hidden;
 }
 .accordian-collapse {
   height: 0px;
@@ -95,7 +132,8 @@
   display: block;
   visibility: visible;
   transition: all 1s ease;
-  transition-delay: 150ms;
+  /* transition-delay: 150ms; */
+  height: calc(100% + 20px);
 
 }
 @media only screen and (max-width: 535px){
@@ -103,7 +141,7 @@
     height: 100%;
     display: block;
     visibility: visible;
-    transition: all 1s ease;
+    transition: all 1s ease-in-out;
     transition-delay: 150ms;
   
   }
@@ -112,20 +150,22 @@
 #tip {
   transition: all .7s ease;
   opacity: 1;
+
 }
+
 
 
 /*  Animations & Transforms */
 
 .slide-x {
-  transition: all 1s ease;
-  transition-delay: 100ms;
+  transition: all 800ms ease;
+  /* transition-delay: 200ms; */
   transform: translateX(-400%);
   
 }
 .slide-x:nth-of-type(even) {
-  transition: all 1s ease;
-  transition-delay: 100ms;
+  transition: all 800ms ease;
+  /* transition-delay: 200ms; */
   transform: translateX(400%);
 }
 .slide-x.show{
@@ -144,35 +184,49 @@
 }
 
 /* testimonials */
+
+#testimonials {
+  background: #075985;
+}
+#testimonials::before {
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  content: '';
+  top: -14em;
+  background-image: url(../img/components/wave.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 .testimonials {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 300px;
+  min-height: 450px;
   overflow: hidden;
   position: relative;
 }
 
 .testimonial {
   position: absolute;
+  display: block;
   top: 50%;
   left: 50%;
-  /* width: 60%; */
+  width: minmax(100%, 800px);
+
   transform: translate(-550%, -50%);
   opacity: 0;
   transition: all 0.9s ease;
 }
+
 @media (max-width: 1004px){
   .testimonials {
     height: 100%;
-    /* min-height: 500px; */
   }
   .testimonial {
     width: 90%;
-  }
-  .testimonial img {
-    float: left;
-    clear: both;
   }
 
 }

@@ -1,3 +1,14 @@
+{{-- 
+  
+    Laravel ToDo List
+      - Create components for reused code
+      - Create User Database
+      - Create Page Template(s)
+      - Rewrite in VueJS
+  
+  
+  --}}
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -5,10 +16,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Home Check Ups & Inspections while you're away | HomeSitters4U.com</title>
-  <meta property="og:url" content=""/>
-  <meta property="og:title" content=""/>
-  <meta property="og:description" content=""/>
-  <meta property="og:type" content=""/>
+  <meta property="og:url" content="https://www.homesitters4u.com"/>
+  <meta property="og:title" content="Home Check Ups for Insurance"/>
+  <meta property="og:description" content="Providing you with Home Check ups while you are away for insurance purposes.  Having documented visitations ensure your claim isn't void"/>
+  <meta property="og:type" content="article"/>
   <meta property="og:image" content=""/>
   {{-- TailwindCSS --}}
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -20,7 +31,11 @@
 <body class="transition-all duration-500 ease">
   {{-- Form Modal --}}
   <div id="formModal" class="hidden w-full h-full fixed top-0 bg-black/90 pointer-events-auto z-50 flex items-center justify-center transition-all duration-500 opacity-0 cursor-wait">
-    <div class="text-black uppercase font-semibold w-1/4 bg-zinc-100/60 rounded-xl p-5">
+    
+    <div class="text-black uppercase font-semibold w-1/4 bg-zinc-100/60 rounded-xl p-5 relative">
+      <div class="absolute top-1 right-2">
+        <i class="fa-solid fa-square-xmark text-red-500 cursor-pointer"></i>
+      </div>
       <p class="text-center mb-5">Are you a robot?</p>
       <div class="mx-auto w-1/2 block text-center p-3 bg-white rounded-full transition-all duration-500 ease">
         <input type="checkbox" name="robots" id="robotCheck" class="p-2">
@@ -29,12 +44,12 @@
     </div>
   </div>
   
-  <header>
+  <header id="home">
     <nav id="navbar"
         class="px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
           <a href="https://albertacraneservice.com/" class="flex items-center z-10">
-           HomeSitters4U
+           <img src="{{ asset('img/components/logo.png') }}" class="w-24" />
           </a>
           <button id="mobileNavBtn" class="inline-block md:hidden px-2 py-1 z-10">
             <i class="fa-solid fa-bars text-white text-2xl"></i>
@@ -48,6 +63,7 @@
                 <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl border-b-2 border-white">Services<i class="fa-regular fa-handshake absolute right-0 top-2"></i></li>
                 <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl border-b-2 border-white">Inspections<i class="fa-solid fa-magnifying-glass absolute right-0 top-2"></i></li>
                 <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl border-b-2 border-white"><i class="fa-solid fa-question absolute right-0 top-2"></i> Faq</li>
+                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl"><i class="fa-regular fa-envelope absolute right-0 top-2"></i> Testimonials</li>
                 <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl"><i class="fa-regular fa-envelope absolute right-0 top-2"></i> contact</li>
               </ul>
             </div>
@@ -58,25 +74,28 @@
             <ul
               class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent items-center">
               <li>
-                <a href="link" class="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase">home</a>
+                <a href="#home" class="block py-2 pr-4 pl-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase nav-link">home</a>
               </li>
               <li>
-                <a href="link" class="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase">services</a>
+                <a href="#services" class="block py-2 pr-4 pl-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase nav-link">services</a>
               </li>
               <li>
-                <a href="link" class="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase">inspections</a>
+                <a href="#inspections" class="block py-2 pr-4 pl-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase nav-link">inspections</a>
               </li>
               <li>
-                <a href="link" class="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase">faq</a>
+                <a href="#faq" class="block py-2 pr-4 pl-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase nav-link">faq</a>
               </li>
               <li>
-                <a href="link" class="block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase">contact</a>
+                <a href="#testimonials" class="block py-2 pr-4 pl-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase nav-link">Testimonials</a>
+              </li>
+              <li>
+                <a href="#contact" class="block py-2 pr-4 pl-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-sky-900 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-md uppercase nav-link">contact</a>
               </li>              
             </ul>
           </div>
         </div>
       </nav>
-      <div id="hero" class="p-12 text-center relative overflow-hidden bg-no-repeat bg-cover hero-bg vh-75">
+      <div id="hero" class="p-12 text-center relative overflow-hidden bg-no-repeat bg-cover hero-bg vh-50">
         <div
           class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed  transition transform duration-300 ease-in-out hover:backdrop-blur-sm hover:scale-1"
           style="background-color: rgba(0, 0, 0, 0.6);">
@@ -93,85 +112,89 @@
         </div>
       </div>
   </header>
-  <main>
+  <main class="relative">
+    <div class="service-wave">&nbsp;</div>
     {{-- up arrow --}}
-    <a class="fixed z-10 bottom-5 right-5 hidden" href='#top' id="scrollTop">
+    <a class="fixed z-10 bottom-5 right-5 hidden" href='#home' id="scrollTop">
       <i class="fa-solid fa-circle-chevron-up font-white fa-fade" style="--fa-animation-duration: 3s;"></i>
     </a>
-
-    <section id="services" class="md:container md:mx-auto">
-      <div class="pt-10 mx-5 md:mx-0">
-        <h2 class="service-green text-3xl md:text-4xl font-semibold uppercase tracking-wide pb-5">Our Services</h2>
+    <section id="services" class="md:container md:mx-auto relative py-32">
+      <div class="pt-20 mx-5 md:mx-0">
+        <h2 class="text-cyan-600 text-3xl md:text-4xl font-bold uppercase tracking-wide pb-5">Our Services</h2>
         <p class="py-2 md:text-lg pb-5 font-medium">HomeSitters4U wants to make sure you never have to worry about insurance claims if something were to happen. We provide robust services to ensure that your home is kept in tip top shape while you are away.  These services can include things such as Snow &amp; Ice removal, Lawn maintenance, smoke detector function checks, sump pump working conditions. We can even feed your goldfish if that helps you! plus so much more. </p>
-        <div class="block w-100 mx-5 md:w-1/2 md:mx-auto py-5 mt-5 bg-slate-200 p-5 shadow rounded-lg slide-x relative" id="tip">
+        {{-- Slide in tip --}}
+        <div class="transition duration-400 ease
+         block w-100 mx-5 md:w-1/2 md:mx-auto py-5 mt-5 bg-gradient-to-br from-blue-700/80 via-cyan-600/80 to-slate-600/80
+         p-5  rounded-lg slide-x relative ring-2 ring-slate-600 drop-shadow-md drop-shadow-lg hover:bg-cyan-700/60 hover:ring-pink-500" id="tip">
           <div class="absolute top-5 right-5">
-            <i id="closeTip" class="fa-solid fa-square-xmark cursor-pointer text-red-500"></i>
+            <i id="closeTip" class="fa-solid fa-square-xmark cursor-pointer text-rose-700"></i>
           </div>
-          <h5 class="text-md font-bold md:text-2xl w-100 text-center uppercase">Did you know?</h5>
-          <p class="pt-2 text-base lg:text-xl">In order to minimize the risk, insurance companies often require a home to be checked in on every 48-72 hours. The exact period of time varies by insurer, so be sure you know what your home insurance policy requires.  HomeSitters4u provides the ability to meet those requirements. Allowing you to have peace of mind while you're away.</p>
+          <h5 class="text-md font-bold md:text-xl w-100 text-center uppercase text-white">Did you know?</h5>
+          <p class="pt-2 text-base lg:text-md text-white font-medium">In order to minimize the risk, insurance companies often require a home to be checked in on every <strong>48-72 hours</strong>. The exact period of time varies by insurer, so be sure you know what your home insurance policy requires.  HomeSitters4u provides the ability to meet those requirements. Allowing you to have peace of mind while you're away.</p>
         </div>
+
         {{-- start cards --}}
-        <div class="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 gap-3 md:gap-5 mt-20 mx-auto lg:mx-0">
+        <div class="grid grid-rows-3  lg:grid-rows-none lg:grid-cols-3 gap-3 md:gap-5 mt-20 mx-auto lg:mx-0">
           <div class="transition-all ease duration-500 hover:-translate-y-2 hover:drop-shadow-lg
-          bg-slate-700 rounded-xl min-h-48 w-auto drop-shadow-md bg-gradient-to-br from-gray-300 via-green-300 to-green-500 shadow">
+          bg-slate-700 rounded-xl min-h-48 w-auto drop-shadow-md bg-gradient-to-br from-gray-300 via-green-300 to-green-500 shadow card">
             <div class="px-10 py-5">
               <div class="flex justify-center align-center"> 
-                <i class="fa-solid fa-house text-2xl lg:text-5xl"></i>
-                <h3 class="pl-2 text-md md:pl-5 sm:text-xl md:text-3xl uppercase font-bold inline-block align-bottom">Home Check Ups</h3>
+                <i class="fa-solid fa-house text-2xl lg:text-3xl"></i>
+                <h3 class="pl-2 text-md md:pl-5 sm:text-xl md:text-xl uppercase font-bold inline-block align-bottom">Home Check Ups</h3>
               </div>
-              <p class="pt-5 font-bold text-sm md:text-xl">
-                Looking for peace of mind?  Our home check up provides you with proof your house was taken care of while you were away.
+              <p class="pt-5 font-medium text-sm md:text-md">
+                Looking for peace of mind while you are away?  Our homesitters will visit your house and provide documentation of the visit. This documentation can be provided to your insurance incase somethere where to happen.
               </p>
             </div>
-            <div class="flex align-center justify-center w-100 pb-5">
+            {{-- <div class="flex align-center justify-center w-100 pb-5">
               <button class="inline-block bg-zinc-50 text-sm rounded-full px-5 py-3 font-bold uppercase text-black shadow mx-auto w-100 transition-all duration-500 ease hover:ring-2 hover:ring-lime-500 hover:drop-shadow-lg
               hover:bg-gradient-to-b hover:from-zinc-100 hover:via-slate-200 hover:to-slate-200
               ">learn more</button>
-            </div>            
+            </div>             --}}
           </div>
           
           <div class="transition-all ease duration-500 hover:-translate-y-2 hover:drop-shadow-lg 
           bg-slate-700 rounded-xl min-h-48 w-auto drop-shadow-md bg-gradient-to-br from-gray-300 via-green-300 to-green-500 shadow">
             <div class="px-10 py-5">
               <div class="flex justify-center align-center"> 
-                <i class="fa-regular fa-snowflake text-2xl lg:text-5xl"></i>
-                <h3 class="pl-2 text-md md:pl-5 sm:text-xl md:text-3xl uppercase font-bold inline-block align-bottom">maintenance</h3>
+                <i class="fa-regular fa-snowflake text-2xl lg:text-3xl"></i>
+                <h3 class="pl-2 text-md md:pl-5 sm:text-xl md:text-xl uppercase font-bold inline-block align-bottom">maintenance</h3>
               </div>
-              <p class="pt-5 font-bold text-sm md:text-xl">
-                Looking for peace of mind?  Our home check up provides you with proof your house was taken care of while you were away.
+              <p class="pt-5 font-medium text-sm md:text-md">
+                While you are away, we can provide you with addition services to suit your needs.  Our home check ups can include Lawn mowing, Snow removal and more.
               </p>
             </div>
-            <div class="flex align-center justify-center w-100 pb-5">
+            {{-- <div class="flex align-center justify-center w-100 pb-5">
               <button class="inline-block bg-zinc-50 text-sm rounded-full px-5 py-3 font-bold uppercase text-black shadow mx-auto w-100 transition-all duration-500 ease hover:ring-2 hover:ring-lime-500 hover:drop-shadow-lg
               hover:bg-gradient-to-b hover:from-zinc-100 hover:via-slate-200 hover:to-slate-200
               ">learn more</button>
-            </div>            
+            </div>             --}}
           </div> 
 
           <div class="transition-all ease duration-500 hover:-translate-y-2 hover:drop-shadow-lg 
           bg-slate-700 rounded-xl min-h-48 w-auto drop-shadow-md bg-gradient-to-br from-gray-300 via-green-300 to-green-500 shadow">
             <div class="px-10 py-5">
               <div class="flex justify-center align-center"> 
-                <i class="fa-solid fa-envelopes-bulk text-2xl lg:text-5xl"></i>
-                <h3 class="pl-2 text-md md:pl-5 sm:text-xl md:text-3xl uppercase font-bold inline-block align-bottom">extra services</h3>
+                <i class="fa-solid fa-envelopes-bulk text-2xl lg:text-3xl"></i>
+                <h3 class="pl-2 text-md md:pl-5 sm:text-xl md:text-xl uppercase font-bold inline-block align-bottom">extra services</h3>
               </div>
-              <p class="pt-5 font-bold text-sm md:text-xl">
-                Looking for peace of mind?  Our home check up provides you with proof your house was taken care of while you were away.
+              <p class="pt-5 font-medium text-sm md:text-md">
+                Homesitters doesn't just check on your home while you are away. We have addition services available for you to choose from.  Some examples of these are plant watering, light dusting and mail collection.
               </p>
             </div>
-            <div class="flex align-center justify-center w-100 pb-5">
+            {{-- <div class="flex align-center justify-center w-100 pb-5">
               <button class="inline-block bg-zinc-50 text-sm rounded-full px-5 py-3 font-bold uppercase text-black shadow mx-auto w-100 transition-all duration-500 ease hover:ring-2 hover:ring-lime-500 hover:drop-shadow-lg
               hover:bg-gradient-to-b hover:from-zinc-100 hover:via-slate-200 hover:to-slate-200
               ">learn more</button>
-            </div>            
+            </div>             --}}
           </div> 
         </div>
         {{-- end cards --}}
       </div>
     </section>
     <section id="inspections" class="mt-32 py-32">
-      <div class="inspect-frame container mx-auto my-20 relative slide-x rounded-xl md:rounded-none p-2 md:p-20 lg:py-20 lg:px-5">        
-        <div class="lg:flex lg:justify-center lg:items-center w-100 lg:min-h-96 ">
+      <div class="inspect-frame container mx-auto my-20 relative slide-x rounded-xl overflow-hidden p-2 md:p-20 lg:py-20 lg:px-5">        
+        <div class="lg:flex lg:justify-center lg:items-center w-100 lg:min-h-96">
           <div class="hidden inspect-img lg:flex justify-center items-center">
             <img src="{{ asset('img/components/home-inspections-and-check-ups.png') }}" alt="Providin home check ups while youre away" class="triangle-gradient w-7/12 rounded-xl drop-shadow-md shadow">
           </div>
@@ -192,8 +215,10 @@
         </div>
       </div>
     </section>
-    <section id="faq" class="lg:container mx-5 lg:mx-auto lg:py-20">
-      <h2 class="text-xl mb-5 md:mb-0 md:text-3xl tracking-wide uppercase service-green font-bold">Frequently Asked Questions</h2>
+
+    {{-- FAQS --}}
+    <section id="faq" class="lg:container mx-5 lg:mx-auto lg:py-20 py-10">
+      <h2 class="text-xl mb-5 md:mb-0 md:text-3xl tracking-wide uppercase text-cyan-600 font-bold">Frequently Asked Questions</h2>
       <p class="text-md ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quod explicabo non dolorem in voluptatibus totam laborum nesciunt nemo! Ullam iusto suscipit illo nihil aut, fugit dolorem voluptate ad quae excepturi reprehenderit ratione sint dicta consequatur quia temporibus. Fuga omnis, consequatur nemo deserunt ex quam! Maxime recusandae laborum mollitia placeat itaque impedit eos. Unde, eum facilis iusto aperiam totam non.</p>
       <div class="grid grid-rows-2 gap-5 lg:flex lg:gap-10 pt-10 ">
         <div class="faq-box w-100 lg:w-1/2 order-2 lg:order-1">
@@ -201,7 +226,7 @@
             <li class="uppercase w-100 px-4 border-b-2 mb-1">
               <div class="flex justify-between">
                 <h4 class="uppercase text-md font-bold">Why should I have my home checked?</h4>
-                <i class="pr-5 text-2xl fa-solid fa-chevron-down service-green cursor-pointer"></i>
+                <i class="pr-5 text-2xl fa-solid fa-chevron-down text-cyan-600 cursor-pointer"></i>
               </div>              
               <div class="accordian accordian-collapse mt-2">
                 <div class="bg-slate-200 rounded-xl w-100 p-2 mb-5">
@@ -214,7 +239,7 @@
             <li class="uppercase w-100 px-4 border-b-2 mb-1">
               <div class="flex justify-between">
                 <h4 class="uppercase text-md font-bold">Who is entering my house?</h4>
-                <i class="pr-5 text-2xl fa-solid fa-chevron-down service-green cursor-pointer"></i>
+                <i class="pr-5 text-2xl fa-solid fa-chevron-down text-cyan-600 cursor-pointer"></i>
               </div>              
               <div class="accordian accordian-collapse mt-2">
                 <div class="bg-slate-200 rounded-xl w-100 p-2 mb-5 ">
@@ -226,52 +251,52 @@
             </li>            
             <li class="uppercase w-100 px-4 border-b-2 mb-1">
               <div class="flex justify-between">
-                <h4 class="uppercase text-md font-bold">Who is entering my house?</h4>
-                <i class="pr-5 text-2xl fa-solid fa-chevron-down service-green cursor-pointer"></i>
+                <h4 class="uppercase text-md font-bold">Why use this service?</h4>
+                <i class="pr-5 text-2xl fa-solid fa-chevron-down text-cyan-600 cursor-pointer"></i>
               </div>              
               <div class="accordian accordian-collapse mt-2">
                 <div class="bg-slate-200 rounded-xl w-100 p-2 mb-5 ">
                   <p class="p-1 text-md normal-case">
-                    One of our friendly certified HomeSitter employees will come and check up on your home. All employees have a current clean criminal record check.
+                    Most insurance companies require someone to check on your house every <strong>48-72 hrs!</strong> If something were to happen to your home while on vacation, your claim would be void and you would responsibile for all loses.
                   </p>
                 </div>
               </div>
             </li>            
             <li class="uppercase w-100 px-4 border-b-2 mb-1">
               <div class="flex justify-between">
-                <h4 class="uppercase text-md font-bold">Who is entering my house?</h4>
-                <i class="pr-5 text-2xl fa-solid fa-chevron-down service-green cursor-pointer"></i>
+                <h4 class="uppercase text-md font-bold">What is your process?</h4>
+                <i class="pr-5 text-2xl fa-solid fa-chevron-down text-cyan-600 cursor-pointer"></i>
               </div>              
               <div class="accordian accordian-collapse mt-2">
                 <div class="bg-slate-200 rounded-xl w-100 p-2 mb-5 ">
                   <p class="p-1 text-md normal-case">
-                    One of our friendly certified HomeSitter employees will come and check up on your home. All employees have a current clean criminal record check.
+                    Our process is simple, Our HomeSitter employee will first meet with you so you can show us where everything is. Within 48 hours of your departure date, we will come to your residence and ensure everything is in order.  We write up documentation and provide photos. The report is then emailed to you, and available online!
                   </p>
                 </div>
               </div>
             </li>            
             <li class="uppercase w-100 px-4 border-b-2 mb-1">
               <div class="flex justify-between">
-                <h4 class="uppercase text-md font-bold">Who is entering my house?</h4>
-                <i class="pr-5 text-2xl fa-solid fa-chevron-down service-green cursor-pointer"></i>
+                <h4 class="uppercase text-md font-bold">Can't I just use a friend/family member?</h4>
+                <i class="pr-5 text-2xl fa-solid fa-chevron-down text-cyan-600 cursor-pointer"></i>
               </div>              
               <div class="accordian accordian-collapse mt-2">
                 <div class="bg-slate-200 rounded-xl w-100 p-2 mb-5 ">
                   <p class="p-1 text-md normal-case">
-                    One of our friendly certified HomeSitter employees will come and check up on your home. All employees have a current clean criminal record check.
+                    Yes, of course you can!  Your friends and family are perfectly fine to visit your home, although they will usually not have any documentation stating their visits.
                   </p>
                 </div>
               </div>
             </li>            
             <li class="uppercase w-100 px-4">
               <div class="flex justify-between">
-                <h4 class="uppercase text-md font-bold">Whats your process?</h4>
-                <i class="pr-5 text-2xl fa-solid fa-chevron-down service-green cursor-pointer"></i>
+                <h4 class="uppercase text-md font-bold">How do I know when you're coming?</h4>
+                <i class="pr-5 text-2xl fa-solid fa-chevron-down text-cyan-600 cursor-pointer"></i>
               </div>              
               <div class="accordian accordian-collapse mt-2">
                 <div class="bg-slate-200 rounded-xl w-100 p-2 mb-5 ">
                   <p class="p-1 text-md normal-case">
-                    Our HomeSitter employee will first meet with you so you can show us where everything is. Within 48 hours of you leaving your property, we will do thorough inspection with Video &amp; Photo documentation available on your user dashboard.
+                    You will received an email 24 hours before visit, and then another email when our homesitter is going to enter and exit your home.
                   </p>
                 </div>
               </div>
@@ -287,10 +312,10 @@
         </div>
       </div>
     </section>
-    <section id="testimonial md:py-20 h-full">
-      <div class="px-5 lg:container lg:mx-auto slide-x py-16">
-        <h2 class="text-xl mb-5 md:mb-0 md:text-3xl uppercase service-green font-bold md:py-10">See what our clients say</h2>
-        <p class="mb-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim excepturi quasi aperiam cumque asperiores? Iure libero necessitatibus asperiores error, eos, nihil voluptates eveniet suscipit recusandae, labore itaque tempore doloremque nulla ab nesciunt adipisci sapiente. Ut repellendus tempora mollitia et nemo asperiores dolore consequuntur, distinctio eveniet quaerat magni doloribus iure iusto!</p>
+ 
+    <section id="testimonials" class="relative mt-64">      
+      <div class="px-5 lg:container lg:mx-auto slide-x pt-8 pb-16 overflow-hidden">
+        <h2 class="text-xl mb-5 md:mb-0 md:text-3xl uppercase text-white font-bold md:py-10 mx-auto w-fit">See what our clients say</h2>
         <div class="lg:mb-20 w-full">
           <div class="testimonials w-full">
             <button id="prev" class="hover:drop-shadow-md hover:font-bold hover:opacity-80 px-2 py-2 text-white font-semibold text-center">
@@ -301,45 +326,24 @@
             </button>
             <div class="w-full h-full">
               {{-- Full Testimonial Start --}}
-              <div class="testimonial current lg:w-100 lg:h-100 md:py-10">
-                <div class="lg:hidden w-full grid-rows-2 bg-emerald-500/20 shadow rounded-xl p-5 gap-3 relative">                                   
-                  <img src="{{ asset('img/test.jpg') }}" class='w-1/4 h-1/4 lg:w-full lg:h-3/4 sm:w-1/4 rounded-full mr-4'>
-                  <div class="">
+              <div class="testimonial current md:py-10">
+                <div class="grid-rows-2 bg-neutral-50 shadow rounded-xl p-5 gap-3 relative ">                                   
+                  <img src="{{ asset('img/test.jpg') }}" class='w-1/4 h-1/4  sm:w-1/4 rounded-full mr-4 float-left'>
+                  <div>
                     <h4 class="font-semibold text-lg text-slate-600 uppercase pr-4 mb-3 block">Amazing service</h4>
                     <p class="block">HomeSitters4U provides such an amazing service, they send all the pictures of each item inspected during the home check up, we also had our driveways shoveled while we were away. Would recommend!</p>
                   </div>
-                  <div class="flex justify-between pt-5">
-                    <div class="flex w-3/4 justify-start align-center">
+                  <div class="flex justify-between lg:justify-center lg:gap-x-5 pt-5 clear-both">
+                    <div class="flex w-3/4 justify-start align-center lg:w-auto">
                       <strong class="text-sm text-gray-600">Joe D</strong>
                     </div>
-                    <div class="flex w-1/4 justify-evenly align-center">                      
+                    <div class="flex w-1/4 justify-evenly align-center lg:w-auto">                      
                       <i class="fa-solid fa-star text-yellow-300"></i>
                       <i class="fa-solid fa-star text-yellow-300"></i>
                       <i class="fa-solid fa-star text-yellow-300"></i>
                       <i class="fa-solid fa-star text-yellow-300"></i>
                       <i class="fa-solid fa-star text-yellow-300"></i>
                     </div>
-                  </div>
-                </div>
-                <div class="hidden bg-emerald-500/20 shadow rounded-xl lg:flex lg:flex-grid-2 lg:gap-10 py-10 px-5 lg:h-64 ">
-                  <div class="w-100 md:w-1/2 md:order-1 relative overflow-hidden rounded-lg bg-slate-50 shadow p-2 pb-5">
-                    <img src="{{ asset('img/test.jpg') }}" class='lg:w-fit lg:h-3/4 rounded-full mx-auto'>
-                    <div class="person w-3/4 absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
-                      <strong class="text-sm text-gray-600">Joe D</strong>
-                    </div>
-                    <div class="stars md:w-1/2 absolute bottom-2 left-1/2 -translate-x-1/2">
-                      <div class="flex justify-between">
-                        <i class="fa-solid fa-star text-yellow-300"></i>
-                        <i class="fa-solid fa-star text-yellow-300"></i>
-                        <i class="fa-solid fa-star text-yellow-300"></i>
-                        <i class="fa-solid fa-star text-yellow-300"></i>
-                        <i class="fa-solid fa-star text-yellow-300"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="w-100 block md:w-2/3 md:order-2">
-                    <h4 class="font-semibold text-lg text-slate-600 uppercase border-b-2 inline-block pr-4 mb-3 border-slate-800">Amazing service</h4>
-                    <p>HomeSitters4U provides such an amazing service, they send all the pictures of each item inspected during the home check up, we also had our driveways shoveled while we were away. Would recommend!</p>
                   </div>
                 </div>
               </div>
@@ -364,20 +368,20 @@
       </div>
     </section>
   </main>
-  <footer>
-    <div class="lg:h-96 bg-gradient-to-b from-slate-800 via-sky-800 to-sky-800">
-      <div class="md:container md:mx-auto pt-10">
-        <div class="grid grid-rows-3 lg:grid-rows-none lg:grid-cols-3 w-100 mx-auto gap-5 lg:gap-10">
-          <div class="w-auto px-5 lg:px-0">
+  <footer id="contact">
+    <div class="max-h-fit lg:h-96 bg-gradient-to-b from-slate-800 via-sky-800 to-sky-800">
+      <div class="lg:container lg:mx-auto pt-10">
+        <div class="grid grid-rows-3 md:grid-rows-none md:grid-cols-3 w-100 mx-auto gap-5 md:gap-0 lg:gap-10">
+          <div class="w-auto px-5 lg:px-0 row-span-3 grid-span-3 md:row-auto">
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold">HomeSitters4U.com</h5>
             <p class="pt-5 text-white">
               Your house is more than a house, its a home where we have cherished memories and watch growth.  HomeSitters is dedicated to making sure your home is in tip top shape.  Worrying about someone checking in on your home can be troublesome, we remove that headache for you to ensure you have a valid insuranace claim in case something were to happen.
             </p>
           </div>
-          <div class="w-full lg:flex lg:justify-center">
+          <div class="w-3/4 lg:flex lg:justify-center grid-span-3 md:row-auto">
             <div class="px-5 lg:px-0">
               <h5 class="text-white text-xl tracking-wide uppercase font-semibold">sitemap</h5>
-              <ul class="list-style-none uppercase text-white pt-5 font-2xl font-bold flex-col lg:block">
+              <ul class="list-style-none uppercase text-white pt-5 font-4xl font-bold sm:flex sm:gap-2 md:gap-0 md:flex-col lg:block">
                 <li><i class="fa-solid fa-house mr-2 w-8 text-center"></i>  HOME</li>
                 <li><i class="fa-solid fa-handshake mr-2 w-8 text-center"></i>  SERVICES</li>
                 <li><i class="fa-solid fa-magnifying-glass mr-2 w-8 text-center"></i>  inspections</li>
@@ -386,18 +390,18 @@
               </ul>
             </div>
           </div>
-          <div class="w-full px-5 lg:px-0 pb-10 lg:pb-0">
+          <div class="w-full px-5 lg:px-0 pb-10 lg:pb-0 grid-span-3 md:row-auto">
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold">contact</h5>
-            <ul class="list-style-none uppercase text-white pt-5 font-2xl font-semibold">
-              <li><i class="fa-solid fa-phone mr-2"></i>  1 (780) 289-3856</li>
+            <ul class="list-style-none uppercase text-white pt-5 font-4xl font-semibold sm:flex sm:gap-2 md:gap-0 md:block">
+              {{-- <li><i class="fa-solid fa-phone mr-2"></i>  1 (780) 289-3856</li> --}}
               <li><i class="fa-solid fa-map mr-2"></i>  Edmonton, Alberta</li>
               <li><i class="fa-solid fa-envelope mr-2"></i> hello@homesitters4u.com</li>
             </ul>
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold mt-5 pb-3">more info</h5>
             <form class="block w-full" id="connectForm" method="POST">
               @csrf
-              <input type="email" name="email" id="email" required placeholder="youremail@address.com" class="lg:w-2/3 rounded-md bg-slate-700/80 p-2 placeholder:font-white/500 placeholder:font-semibold placeholder:px-2 w-full block mb-3">
-              <button id="connectSubmit" type="submit" class="uppercase px-3 py-2 bg-orange-700 rounded-md text-white font-semibold w-full block mb-3 lg:w-auto">connect</button>
+              <input type="email" name="email" id="email" required placeholder="youremail@address.com" class="lg:w-2/3 rounded-md bg-slate-700/80 p-2 placeholder:font-white/500 placeholder:font-semibold placeholder:px-2 w-auto block mb-3">
+              <button id="connectSubmit" type="submit" class="uppercase px-3 py-2 bg-orange-700 rounded-md text-white font-semibold w-auto block mb-3 lg:w-auto">connect</button>
             </form>
             <div class="hidden w-100 text-center" id="toastMsg">
               <h4 class="text-white font-semibold">Thank you! your request for more information has been received.</h4>
@@ -405,7 +409,12 @@
           </div>
         </div>
       </div>
+      <div class="w-full flex flex-col align-center justify-center text-xs">
+        <p class="text-white text-center">Copyright &copy; <span id='copyright'></span> HomeSitters4u.com</p>
+        <p class="text-white text-center">Website created by <a href="https://www.debuggingbytes.com" class="text-orange-500 uppercase">DebuggingBytes</a></p>
+      </div>
     </div>
+    
   </footer>  
   {{-- Laravel Mix --}}
   <script src="{{ mix('/js/app.js') }}"></script>
