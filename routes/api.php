@@ -1,8 +1,8 @@
 <?php
 
+use App\Models\Email;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Js;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +15,40 @@ use Illuminate\Support\Js;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/contact', function (Request $request) {
+
+  $validation = $request->validate([
+    'email' => 'required|unique:emails,email',
+    'verified' => 'required'
+  ]);
+
+  if (!$validation) {
+    return response()->json([
+      'success' => false,
+      'message' => 'API Failed validation',
+      // 'errors' => $request->errors()
+    ]);
+  }
+
+  $email = Email::create([
+    'email' => $request->email
+  ]);
+
+  if ($email) {
+    $response = [
+      'message' => 'API Success',
+      'email' => 'Yes'
+    ];
+    return response(json_encode($response), 200);
+  } else {
+    return response(json_encode('Error with creating email'), 300);
+  }
+  // return json_encode($request->email);
 });
 
 
-Route::post('/{email}/', function(Request $request, $email){
-
-  // print json_encode($request->verified);
-  //When user submits email address to contact form
-  if(!$request->verified){
-    return false;
-  }
-  
-  return json_encode("$email as successfully added to the mailing list");
-  
-
+Route::any("/", function () {
+  // dd($request);
+  $token = csrf_token();
+  return "Hello " . $token;
 });

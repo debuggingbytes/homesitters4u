@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Satisfy);
+
 body {
   overflow-x: hidden;
 }
@@ -64,6 +66,16 @@ nav a.current-page {
   padding-bottom: 2px;
 }
 
+.mobileNav:not(:last-child) {
+  border-bottom: solid 3px #fff;
+}
+@media (max-width: 600px) {
+  nav a.current-page {
+    border:unset;  
+    color: #F97316;
+
+  }
+}
 
 /* Services */
 
@@ -104,12 +116,63 @@ nav a.current-page {
   justify-content: center;
   align-items: center;
 }
-.inspect-frame img {
-  border-radius: 15%;
-}
 .triangle-gradient {
   background-image: linear-gradient(to bottom right, rgba(255,255,255,.2) 0%, rgba(255,255,255,.2) 50%, transparent 50%);
 }
+
+.photocard {
+  width: 200px;
+  height: fit-content;
+  position: absolute;
+  top: 2%;
+  left: 19%;
+  z-index: 5;
+  transition: all ease 200ms;
+  transform: translate(-19%, -2%);
+}
+.photocard:hover {
+  z-index: 10;
+  transform: scale(1.2) translate(-19%, -2%);
+
+}
+.photocard:nth-child(2){
+  width: 200px;
+  height: fit-content;
+  position: absolute;
+  top: 20%;
+  left: 7%;
+  transform: rotateZ(-15deg) translate(-7%, -20%);
+  z-index: 4;
+}
+.photocard:nth-child(2):hover{
+  transform: rotateZ(0deg) scale(1.2) translate(-7%,-20%);
+  z-index: 10;
+}
+.photocard:nth-child(3){
+  width: 200px;
+  height: fit-content;
+  position: absolute;
+  top: 24%;
+  left: 30%;
+  transform: rotateZ(15deg) translate(-30%, -20%);
+  z-index: 4;
+}
+.photocard:nth-child(3):hover{
+  transform: rotateZ(0deg) scale(1.2) translate(-30%, -20%);
+  z-index: 10;
+}
+
+.photocard__photo img{
+  width: 100%;
+
+}
+.photocard__foot {
+  text-align: center;
+  font-family: "Satisfy";
+  padding-top: 5px;
+}
+
+
 
 /* faq */
 
@@ -221,6 +284,11 @@ nav a.current-page {
   transition: all 0.9s ease;
 }
 
+.testimonial img {
+  width: 150px;
+  height: 150px;
+}
+
 @media (max-width: 1004px){
   .testimonials {
     height: 100%;
@@ -233,11 +301,19 @@ nav a.current-page {
 @media (max-width: 630px){
   .testimonials {
     height: 100%;
-    /* min-height: 300px; */
+    min-height: 90vh;
   }
   .testimonial {
     display: block;
     width: 90%;
+    min-height:max-content;
+  }
+  .testimonial h4 {
+    text-align: center;
+    padding-top: 5px;
+  }
+  .testimonial img {
+    margin: 0 auto;
   }
 
 }

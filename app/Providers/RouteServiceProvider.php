@@ -42,6 +42,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
+            
+            Route::domain('account.homesitters4u.com')
+                ->group(base_path('routes/subdomain.php'));
+
 
             Route::middleware('web')
                 ->namespace($this->namespace)

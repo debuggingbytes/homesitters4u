@@ -30,16 +30,22 @@
 </head>
 <body class="transition-all duration-500 ease">
   {{-- Form Modal --}}
-  <div id="formModal" class="hidden w-full h-full fixed top-0 bg-black/90 pointer-events-auto z-50 flex items-center justify-center transition-all duration-500 opacity-0 cursor-wait">
+  <div id="formModal" class="w-full h-full fixed top-0 bg-black/90 pointer-events-auto z-50 flex items-center justify-center transition-all duration-500 opacity-0 cursor-wait">
     
     <div class="text-black uppercase font-semibold w-1/4 bg-zinc-100/60 rounded-xl p-5 relative">
       <div class="absolute top-1 right-2">
-        <i class="fa-solid fa-square-xmark text-red-500 cursor-pointer"></i>
+        <i class="fa-solid fa-square-xmark text-red-500 cursor-pointer closeModal"></i>
       </div>
-      <p class="text-center mb-5">Are you a robot?</p>
+      <p class="text-center mb-5">Hey, We just want to make sure you're not a robot.</p>
       <div class="mx-auto w-1/2 block text-center p-3 bg-white rounded-full transition-all duration-500 ease">
         <input type="checkbox" name="robots" id="robotCheck" class="p-2">
         <span class="ml-5 hidden " id="notToday"><i class="fa-solid fa-check text-xl text-green-500"></i> Not Today!</span>
+        <div class="loading inline-block mx-auto hidden">
+          <svg class="inline mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+        </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -59,12 +65,12 @@
           <div id="mobileNav" class="md:hidden z-1 fixed top-0 left-0 w-full h-full bg-sky-800 transition-all duration-500 ease mobile-nav">
             <div class="relative w-full h-full">
               <ul class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4 text-start font-bold text-white w-2/3 mx-auto">
-                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl border-b-2 border-white">Home<i class="fa-solid fa-house absolute right-0 top-2"></i></li>
-                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl border-b-2 border-white">Services<i class="fa-regular fa-handshake absolute right-0 top-2"></i></li>
-                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl border-b-2 border-white">Inspections<i class="fa-solid fa-magnifying-glass absolute right-0 top-2"></i></li>
-                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl border-b-2 border-white"><i class="fa-solid fa-question absolute right-0 top-2"></i> Faq</li>
-                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl"><i class="fa-regular fa-envelope absolute right-0 top-2"></i> Testimonials</li>
-                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl"><i class="fa-regular fa-envelope absolute right-0 top-2"></i> contact</li>
+                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl mobileNav"><a href='#home'>Home</a><i class="fa-solid fa-house absolute right-0 top-2"></i></li>
+                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl mobileNav"><a href="#services">Services</a><i class="fa-regular fa-handshake absolute right-0 top-2"></i></li>
+                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl mobileNav"><a href="#inspections">Inspections</a><i class="fa-solid fa-magnifying-glass absolute right-0 top-2"></i></li>
+                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl mobileNav"><i class="fa-solid fa-question absolute right-0 top-2"></i> <a href="#faq">Faq</a></li>
+                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl mobileNav"><i class="fa-solid fa-comments absolute right-0 top-2"></i> <a href="#testimonials">Testimonials</a></li>
+                <li class="relative uppercase py-2 mb-2 sm:text-xl md:text-3xl mobileNav"><i class="fa-regular fa-envelope absolute right-0 top-2"></i> <a href="#contact">contact</a></li>
               </ul>
             </div>
             
@@ -116,7 +122,7 @@
     <div class="service-wave">&nbsp;</div>
     {{-- up arrow --}}
     <a class="fixed z-10 bottom-5 right-5 hidden" href='#home' id="scrollTop">
-      <i class="fa-solid fa-circle-chevron-up font-white fa-fade" style="--fa-animation-duration: 3s;"></i>
+      <i class="fa-solid fa-circle-chevron-up font-white fa-fade text-2xl" style="--fa-animation-duration: 3s;"></i>
     </a>
     <section id="services" class="md:container md:mx-auto relative py-32">
       <div class="pt-20 mx-5 md:mx-0">
@@ -146,11 +152,7 @@
                 Looking for peace of mind while you are away?  Our homesitters will visit your house and provide documentation of the visit. This documentation can be provided to your insurance incase somethere where to happen.
               </p>
             </div>
-            {{-- <div class="flex align-center justify-center w-100 pb-5">
-              <button class="inline-block bg-zinc-50 text-sm rounded-full px-5 py-3 font-bold uppercase text-black shadow mx-auto w-100 transition-all duration-500 ease hover:ring-2 hover:ring-lime-500 hover:drop-shadow-lg
-              hover:bg-gradient-to-b hover:from-zinc-100 hover:via-slate-200 hover:to-slate-200
-              ">learn more</button>
-            </div>             --}}
+            
           </div>
           
           <div class="transition-all ease duration-500 hover:-translate-y-2 hover:drop-shadow-lg 
@@ -164,11 +166,7 @@
                 While you are away, we can provide you with addition services to suit your needs.  Our home check ups can include Lawn mowing, Snow removal and more.
               </p>
             </div>
-            {{-- <div class="flex align-center justify-center w-100 pb-5">
-              <button class="inline-block bg-zinc-50 text-sm rounded-full px-5 py-3 font-bold uppercase text-black shadow mx-auto w-100 transition-all duration-500 ease hover:ring-2 hover:ring-lime-500 hover:drop-shadow-lg
-              hover:bg-gradient-to-b hover:from-zinc-100 hover:via-slate-200 hover:to-slate-200
-              ">learn more</button>
-            </div>             --}}
+            
           </div> 
 
           <div class="transition-all ease duration-500 hover:-translate-y-2 hover:drop-shadow-lg 
@@ -182,11 +180,7 @@
                 Homesitters doesn't just check on your home while you are away. We have addition services available for you to choose from.  Some examples of these are plant watering, light dusting and mail collection.
               </p>
             </div>
-            {{-- <div class="flex align-center justify-center w-100 pb-5">
-              <button class="inline-block bg-zinc-50 text-sm rounded-full px-5 py-3 font-bold uppercase text-black shadow mx-auto w-100 transition-all duration-500 ease hover:ring-2 hover:ring-lime-500 hover:drop-shadow-lg
-              hover:bg-gradient-to-b hover:from-zinc-100 hover:via-slate-200 hover:to-slate-200
-              ">learn more</button>
-            </div>             --}}
+           
           </div> 
         </div>
         {{-- end cards --}}
@@ -194,20 +188,63 @@
     </section>
     <section id="inspections" class="mt-32 py-32">
       <div class="inspect-frame container mx-auto my-20 relative slide-x rounded-xl overflow-hidden p-2 md:p-20 lg:py-20 lg:px-5">        
-        <div class="lg:flex lg:justify-center lg:items-center w-100 lg:min-h-96">
-          <div class="hidden inspect-img lg:flex justify-center items-center">
-            <img src="{{ asset('img/components/home-inspections-and-check-ups.png') }}" alt="Providin home check ups while youre away" class="triangle-gradient w-7/12 rounded-xl drop-shadow-md shadow">
+        <div class="lg:flex lg:justify-center lg:items-center w-full lg:min-h-full relative">
+          <div class="hidden inspect-img lg:block lg:w-2/3">
+
+            <div class="photocard bg-white p-2 drop-shadow-md shadow">
+              <div class="photocard__photo">
+                <img src="{{ asset('img/components/home-inspections-and-check-ups.png') }}" alt="Providing home check ups while youre away" class="triangle-gradient w-100 rounded-none">
+              </div>
+              <div class="photocard__foot">
+                  <p>
+                    Electrical panel checked
+                    <span class="block">
+                      08/12/21 - 1440 hrs
+                    </span>
+                  </p>
+              </div>
+            </div>
+
+            <div class="photocard bg-white p-2 drop-shadow-md shadow">
+              <div class="photocard__photo">
+                <img src="{{ asset('img/components/home-inspections-and-check-ups.png') }}" alt="Providing home check ups while youre away" class="triangle-gradient w-100 rounded-none">
+              </div>
+              <div class="photocard__foot">
+                  <p>
+                    Electrical panel checked
+                    <span class="block">
+                      08/12/21 - 1440 hrs
+                    </span>
+                  </p>
+              </div>
+            </div>
+            
+            <div class="photocard bg-white p-2 drop-shadow-md shadow">
+              <div class="photocard__photo">
+                <img src="{{ asset('img/components/home-inspections-and-check-ups.png') }}" alt="Providing home check ups while youre away" class="triangle-gradient w-100 rounded-none">
+              </div>
+              <div class="photocard__foot">
+                  <p>
+                    Electrical panel checked
+                    <span class="block">
+                      08/12/21 - 1440 hrs
+                    </span>
+                  </p>
+              </div>
+            </div>
+
+
           </div>
-          <div class="inspect-text w-100 lg:w-2/3 items-start text-center md:text-start ">
-            <h3 class="text-xl md:text-2xl xl:text-4xl uppercase font-semibold pb-1 mb-4">
+          <div class="inspect-text w-100 lg:w-3/4 items-start text-center md:text-start ">
+            <h3 class="text-xl md:text-2xl xl:text-3xl uppercase font-semibold pb-1 mb-4">
               Your Home Check Up<i class="text-red-600 fa-solid fa-heart-pulse ml-3 fa-beat"></i>
             </h3>
             <p class="text-sm md:text-lg pb-5">When it comes to your house, we understand that its more than that.  Your house is your home, we want to make sure it stays that way while you are away.  We will check all the boxes when it comes to visiting your home. Function checking your smoke detectors, sump pumps, furnance pilot light. We can even gather your mail! </p>
             <ul class="list-style-none text-black text-start">
-              <li class="text-sm md:text-md lg:text-2xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>hot water tank leaks</li>
-              <li class="text-sm md:text-md lg:text-2xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>breaker panel trips</li>
-              <li class="text-sm md:text-md lg:text-2xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>furnances</li>
-              <li class="text-sm md:text-md lg:text-2xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>smoke detectors</li>
+              <li class="text-sm md:text-md lg:text-xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>hot water tank leaks</li>
+              <li class="text-sm md:text-md lg:text-xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>breaker panel trips</li>
+              <li class="text-sm md:text-md lg:text-xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>furnances</li>
+              <li class="text-sm md:text-md lg:text-xl uppercase"><i class="fa-regular text-green-700 fa-circle-check md:pr-5 pb-1"></i>smoke detectors</li>
             </ul>
           </div>
         </div>
@@ -219,10 +256,12 @@
     {{-- FAQS --}}
     <section id="faq" class="lg:container mx-5 lg:mx-auto lg:py-20 py-10">
       <h2 class="text-xl mb-5 md:mb-0 md:text-3xl tracking-wide uppercase text-cyan-600 font-bold">Frequently Asked Questions</h2>
-      <p class="text-md ">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quod explicabo non dolorem in voluptatibus totam laborum nesciunt nemo! Ullam iusto suscipit illo nihil aut, fugit dolorem voluptate ad quae excepturi reprehenderit ratione sint dicta consequatur quia temporibus. Fuga omnis, consequatur nemo deserunt ex quam! Maxime recusandae laborum mollitia placeat itaque impedit eos. Unde, eum facilis iusto aperiam totam non.</p>
+      <p class="text-xl pt-5">
+        Here are some of the frequently asked questions from our clients. Homesitters4u will updated our list of most commonly asked questions from our clients.  Don't see what you are looking for? Feel free to reach out!
+      </p>
       <div class="grid grid-rows-2 gap-5 lg:flex lg:gap-10 pt-10 ">
         <div class="faq-box w-100 lg:w-1/2 order-2 lg:order-1">
-          <ul class="list-style-none shadow p-2 rounded-xl">
+          <ul class="list-style-none shadow p-2 rounded-xl lg:h-full">
             <li class="uppercase w-100 px-4 border-b-2 mb-1">
               <div class="flex justify-between">
                 <h4 class="uppercase text-md font-bold">Why should I have my home checked?</h4>
@@ -325,43 +364,20 @@
               <i class="fa-sharp fa-solid fa-chevron-right text-black text-2xl"></i>
             </button>
             <div class="w-full h-full">
-              {{-- Full Testimonial Start --}}
-              <div class="testimonial current md:py-10">
-                <div class="grid-rows-2 bg-neutral-50 shadow rounded-xl p-5 gap-3 relative ">                                   
-                  <img src="{{ asset('img/test.jpg') }}" class='w-1/4 h-1/4  sm:w-1/4 rounded-full mr-4 float-left'>
-                  <div>
-                    <h4 class="font-semibold text-lg text-slate-600 uppercase pr-4 mb-3 block">Amazing service</h4>
-                    <p class="block">HomeSitters4U provides such an amazing service, they send all the pictures of each item inspected during the home check up, we also had our driveways shoveled while we were away. Would recommend!</p>
-                  </div>
-                  <div class="flex justify-between lg:justify-center lg:gap-x-5 pt-5 clear-both">
-                    <div class="flex w-3/4 justify-start align-center lg:w-auto">
-                      <strong class="text-sm text-gray-600">Joe D</strong>
-                    </div>
-                    <div class="flex w-1/4 justify-evenly align-center lg:w-auto">                      
-                      <i class="fa-solid fa-star text-yellow-300"></i>
-                      <i class="fa-solid fa-star text-yellow-300"></i>
-                      <i class="fa-solid fa-star text-yellow-300"></i>
-                      <i class="fa-solid fa-star text-yellow-300"></i>
-                      <i class="fa-solid fa-star text-yellow-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {{-- Full Testimonial End --}}
+             
+              <x-Testimonial class='current' testimonialName="Joe D" 
+              testimonialText="HomeSitters4U provides such an amazing service, they send all the pictures of each item inspected during the home check up, we also had our driveways shoveled while we were away. Would recommend!" 
+              testimonialTitle='Amazing service!' testimonialImg='test.jpg'/>
 
+              <x-Testimonial testimonialName="Shantell M" 
+              testimonialText="I wasn't sure if I really needed this service. But after a lot of thinking I decided that for the price, it was worth it.  My homesitter was very friendly and professional. By the second day of my vacation I recieved my email saying my homesitter was visiting that day. After their check up I had my document which included photos. I was very impressed with this service." 
+              testimonialTitle='You need this service!' testimonialImg='test2.jpg'/>
 
-              <div class="testimonial">
-                <h4>This is doug2</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, et dolores eos ipsum voluptas quo. Mollitia quae sint tenetur architecto?</p>
-              </div>
-              <div class="testimonial">
-                <h4>This is doug3</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, et dolores eos ipsum voluptas quo. Mollitia quae sint tenetur architecto?</p>
-              </div>
-              <div class="testimonial">
-                <h4>This is doug4</h4>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, et dolores eos ipsum voluptas quo. Mollitia quae sint tenetur architecto?dsadsadsadsad</p>
-              </div>
+              <x-Testimonial testimonialName="Marianne C" 
+              testimonialText="I honestly was surprised I could find someone to water my plants while on vacation with ease! Not only was my home checked on for my insurance, but my plants didnt die either! I had them visit twice during my vacation." 
+            testimonialTitle='Superb!!' testimonialImg='test3.jpg'/>
+              
+              
             </div>            
           </div>
         </div>
@@ -398,10 +414,12 @@
               <li><i class="fa-solid fa-envelope mr-2"></i> hello@homesitters4u.com</li>
             </ul>
             <h5 class="text-white text-xl tracking-wide uppercase font-semibold mt-5 pb-3">more info</h5>
-            <form class="block w-full" id="connectForm" method="POST">
-              @csrf
-              <input type="email" name="email" id="email" required placeholder="youremail@address.com" class="lg:w-2/3 rounded-md bg-slate-700/80 p-2 placeholder:font-white/500 placeholder:font-semibold placeholder:px-2 w-auto block mb-3">
+            <form class="block w-full" id="connectForm">
+              
+              <input type="email" name="email" id="email" required placeholder="youremail@address.com" class="lg:w-2/3 rounded-md bg-slate-700/80 p-2 placeholder:font-white/500 placeholder:font-semibold placeholder:px-2 w-auto block mb-3 text-white px-2 font-medium">
               <button id="connectSubmit" type="submit" class="uppercase px-3 py-2 bg-orange-700 rounded-md text-white font-semibold w-auto block mb-3 lg:w-auto">connect</button>
+              @csrf
+              @method("POST")
             </form>
             <div class="hidden w-100 text-center" id="toastMsg">
               <h4 class="text-white font-semibold">Thank you! your request for more information has been received.</h4>
